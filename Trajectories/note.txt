@@ -1,0 +1,2 @@
+From the NetCDF file (original trajectory), I create an HDF5 file and keep only
+the datasets I need to compute the MSD.
