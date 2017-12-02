@@ -1,20 +1,29 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-def plot_msd(data, percentage=0.3):
+def plot_msd(*data, percentage=0.3):
     """
     Paratmeters
     -----------
     data: 1D array
-    percentage: percentage of plot data
+    percentage: percentage of the data that will be plotted
     """
-    fig, ax = plt.subplots(figsize=(7,7))
+    fig, ax = plt.subplots(figsize=(10,7))
 
+    # plot data
     for msd in data:
         msd = msd[:int(len(msd)*percentage)]
         ax.plot(np.arange(len(msd)), msd)
-    ax.set_xlabel('t')
-    ax.set_title('MSD');
+
+    # labels
+    ax.set_xlabel('t', size=16)
+    ax.set_title('MSD', size=16)
+    ax.tick_params(labelsize=16)
+
+    # Remove spines and ticks
+    ax.spines['right'].set_color('none')
+    ax.spines['top'].set_color('none');
+
 
 def plot_coordinates(coord_pbc, coord_nopbc):
     """
