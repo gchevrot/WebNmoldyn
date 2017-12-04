@@ -1,6 +1,8 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
+__version__ = "0.1.0"
+
 def plot_msd(*data, percentage=0.3):
     """
     Paratmeters
