@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 
 __version__ = "0.1.0"
 
-def plot_msd(*data, percentage=1, legend=None, fit=False):
+def plot_msd(*data, percentage=1, legend=None, fit=None):
     """
     Plot the mean square displacement
 
@@ -14,6 +14,8 @@ def plot_msd(*data, percentage=1, legend=None, fit=False):
     :type percentage: float
     :param legend: data legend
     :type legend: list of string
+    :param fit: fitting coefficients
+    :type fit: list of 2 floats
     """
     fig, ax = plt.subplots(figsize=(10,7))
 
@@ -42,6 +44,14 @@ def plot_msd(*data, percentage=1, legend=None, fit=False):
             for msd in data:
                 ax_sub.plot(msd[0, :int(len(msd[0])*percentage)],
                             msd[1, :int(len(msd[1])*percentage)])
+            # Adding text
+            ax.text(x = 5, y = 0.08, s = "Fit: 6 D t + a",
+                    fontsize = 18, color='#FF8000', alpha = 1)
+            ax.text(x = 5.6, y = 0.06, s = f"D = {fit[0]/6:.4f}",
+                    fontsize = 16, color='#FF8000', alpha = 1)
+            ax.text(x = 5.6, y = 0.04, s = f"a = {fit[1]:.4f}",
+                    fontsize = 16, color='#FF8000', alpha = 1)
+
 
     # labels
     ax.tick_params(labelsize=16)
