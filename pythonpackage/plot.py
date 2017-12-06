@@ -126,20 +126,20 @@ def plot_velocities(*data, legend=None):
             ax.set_xlabel('t', size=16)
             ax.set_title('velocity', size=16)
     if len(data[0].shape) == 2:
-        alpha = 1.2
+        alpha = 1.3
         for velocity in data:
             alpha -= 0.4
             ax.plot(velocity[0, :int(len(velocity[0]))],
                     velocity[1, :int(len(velocity[1]))],
-                    alpha=alpha)
+                    alpha=alpha, zorder=0.1)
     # 0 graduation starts at x=0
-    ax.set_xlim([0, int(velocity[0, -1])])
+    ax.set_xlim([0, int(velocity[0, -1])+2])
     # change position of xlabel and ylabel
     #ax.set_xlabel('time [ps]', size=16)
     #ax.set_ylabel('v [nm/ps]', size=16)
-    ax.text(x = velocity[0, -1] +5, y = -0.05, s = "time [ps]",
+    ax.text(x = velocity[0, -1] +5, y = -0.55, s = "time [ps]",
             fontsize = 18, alpha = 1)
-    ax.text(x = -1, y = velocity[1].max()+0.6, s = "v [nm/ps]",
+    ax.text(x = -1, y = velocity[1].max()+0.7, s = "v [nm/ps]",
             fontsize = 18, alpha = 1)
 
     # ticks, labels
