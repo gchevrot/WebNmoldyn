@@ -18,27 +18,33 @@
         font-family: 'Fenix', serif;
     }
     h3{
-		font-family: 'Fenix', serif;
-        margin-top:12px;
-        margin-bottom: 3px;
+       font-family: 'Fenix', serif;
+       margin-top:12px;
+       margin-bottom: 3px;
        }
-	h4{
-		font-family: 'Fenix', serif;
+    h4{
+       font-family: 'Fenix', serif;
        }
     h5 {
-        font-family: 'Alegreya Sans', sans-serif;
+       font-family: 'Alegreya Sans', sans-serif;
     }
     div.text_cell_render{
         font-family: 'Alegreya Sans',Computer Modern, "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
-        line-height: 135%;
-        font-size: 120%;
+        line-height: 130%;
+        font-size: 115%;
         width:900px;
         margin-left:auto;
         margin-right:auto;
     }
     .CodeMirror{
-            font-family: "Source Code Pro";
-			font-size: 90%;
+        font-family: "Verdana";    /*"Source Code Pro";*/
+	font-size: 90%;
+        line-height: 140%;
+    }
+    div.output_area pre{
+        font-family: "Arial";    
+	font-size: 95%;
+        color: #585858; 
     }
 /*    .prompt{
         display: None;
@@ -46,7 +52,7 @@
     .text_cell_render h1 {
         font-weight: 200;
         font-size: 45pt;
-		line-height: 100%;
+	line-height: 100%;
         color:#F9423A;
         margin-bottom: 0.5em;
         margin-top: 0.5em;
