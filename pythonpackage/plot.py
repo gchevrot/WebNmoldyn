@@ -105,3 +105,63 @@ def plot_coordinates(coord_pbc, coord_nopbc):
     # Remove spines and ticks
     ax.spines['right'].set_color('none')
     ax.spines['top'].set_color('none');
+
+
+def plot_velocities(*data, legend=None):
+    """
+    Plot the mean square displacement
+
+    :param data: time series
+    :type data: np.ndarray
+    :param legend: data legend
+    :type legend: list of string
+    """
+    fig, ax = plt.subplots(figsize=(10,7))
+
+    # plot data
+    if len(data[0].shape) == 1:
+        for velocity in data:
+            velocity = velocity[:int(len(velocity))]
+            ax.plot(np.arange(len(velocity)), velocity)
+            ax.set_xlabel('t', size=16)
+            ax.set_title('velocity', size=16)
+    if len(data[0].shape) == 2:
+        alpha = 1.2
+        for velocity in data:
+            alpha -= 0.4
+            ax.plot(velocity[0, :int(len(velocity[0]))],
+                    velocity[1, :int(len(velocity[1]))],
+                    alpha=alpha)
+    # 0 graduation starts at x=0
+    ax.set_xlim([0, int(velocity[0, -1])])
+    # change position of xlabel and ylabel
+    #ax.set_xlabel('time [ps]', size=16)
+    #ax.set_ylabel('v [nm/ps]', size=16)
+    ax.text(x = velocity[0, -1] +5, y = -0.05, s = "time [ps]",
+            fontsize = 18, alpha = 1)
+    ax.text(x = -1, y = velocity[1].max()+0.6, s = "v [nm/ps]",
+            fontsize = 18, alpha = 1)
+
+    # ticks, labels
+    ax.tick_params(labelsize=16,
+                   direction='inout', length=5, top='off', right='off')
+    ## remove the 0 value manually
+    ax.set_xticklabels([''] + list(range(20, int(velocity[0, -1])+1, 20)))
+
+    # Legend
+    if legend:
+        ax.legend(legend,
+                  loc='best',
+                  frameon=True,
+                  shadow=True,
+                  facecolor='#FFFFFF',
+                  framealpha=0.9,
+                  fontsize=14)
+
+    # Remove spines and ticks
+    ax.spines['right'].set_color('none')
+    ax.spines['top'].set_color('none')
+    # bottom spine -> position y=0
+    ax.spines['bottom'].set_position(('data',0))
+    ax.spines['bottom'].set_linewidth(2)
+    ax.spines['left'].set_linewidth(2)
