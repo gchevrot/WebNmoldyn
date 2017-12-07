@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-__version__ = "0.1.0"
+__version__ = "0.2.0"
 
 def plot_msd(*data, percentage=1, legend=None, fit=None):
     """
@@ -165,3 +165,62 @@ def plot_velocities(*data, legend=None):
     ax.spines['bottom'].set_position(('data',0))
     ax.spines['bottom'].set_linewidth(2)
     ax.spines['left'].set_linewidth(2)
+
+
+def plot_vacf(*data, percentage=1, legend=None, color=None):
+    """
+    Plot the mean square displacement
+
+    :param data: time series
+    :type data: np.ndarray
+    :param percentage: percentage of the data that will be plotted,
+                       value between 0 and 1.
+    :type percentage: float
+    :param legend: data legend
+    :type legend: list of string
+    """
+    fig, ax = plt.subplots(figsize=(10,7))
+
+    print
+    # plot data
+    if len(data[0].shape) == 1:
+        for vacf in data:
+            ax.plot(vacf[0, :int(len(vacf[0])*percentage)],
+                       vacf[1, :int(len(vacf[1])*percentage)])
+            ax.set_xlabel('time [ps]', size=16)
+            ax.set_ylabel('VACF [$nm^2/ps^2$]', size=16)
+            ax.set_xlim([0, vacf[0, int(len(vacf[0])*percentage)-1]])
+            ax.set_ylim([0, vacf[1, int(len(vacf[1])*percentage)-1]])
+
+    if len(data[0].shape) == 2:
+        for vacf in data:
+            ax.plot(vacf[0, :int(len(vacf[0])*percentage)],
+                       vacf[1, :int(len(vacf[1])*percentage)],
+                       color = color)
+            ax.set_xlabel('time [ps]', size=16)
+            ax.set_ylabel('VACF [$nm^2/ps^2$]', size=16)
+            ax.set_xlim([0, vacf[0, int(len(vacf[0])*percentage)-1]])
+            ymin = np.around(vacf[1].min()-0.1, decimals=1)
+            ymax = np.around(vacf[1].max()+0.1, decimals=1)
+            ax.set_ylim([ymin, ymax])
+
+    # labels
+    ax.tick_params(labelsize=16)
+    ## remove the 0 value manually for the x label
+    ax.set_xticklabels([''] + list(np.linspace(0,
+                       int(((data[0][0])*percentage)[-1]), 6)[1:]))
+
+    # Legend
+    if legend:
+        ax.legend(legend,
+                  loc='best',
+                  frameon=True,
+                  shadow=True,
+                  facecolor='#FFFFFF',
+                  framealpha=0.9,
+                  fontsize=14)
+
+    # Remove spines and ticks
+    ax.spines['right'].set_color('none')
+    ax.spines['top'].set_color('none')
+    ax.spines['bottom'].set_position(('data',0));

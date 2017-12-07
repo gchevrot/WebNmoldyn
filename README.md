@@ -15,5 +15,9 @@ Click on the badge "launch binder" to interact with the notebooks!
 A step by step explanation of how to compute the Mean Square Displacement
 (MSD)
 
+## 2. vacf.ipynb
+
+A step by step explanation of how to compute the Velocity Auto-Correlation
+Function (VACF)
 
 
