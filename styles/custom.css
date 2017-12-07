@@ -7,7 +7,7 @@
         src: url('http://mirrors.ctan.org/fonts/cm-unicode/fonts/otf/cmunss.otf');
     }
     div.cell{
-        width:900px;
+        width:1000px;
         margin-left:auto;
         margin-right:auto;
     }
