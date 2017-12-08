@@ -1,6 +1,6 @@
 import numpy as np
 
-__version__ = "0.1.0"
+__version__ = "0.2.0"
 
 def round_up_to_power_of_two(n):
     p = 1
@@ -92,3 +92,35 @@ def compute_msd(ts1, ts2=None):
             - np.concatenate(([0.], sum_dsq2[:-1]))) / np.arange(n, 0, -1) \
             - 2.*correlation(ts1, ts2)
     return msd
+
+def gaussian(ts, sigma = 1.0, mu = 0.0):
+    """
+    Returns a gaussian.
+    """
+    gauss = np.exp(-0.5*((ts - mu) / sigma)**2)
+    return gauss
+
+def window(series, window_function):
+    """
+    Returns a smoothed signal.
+
+    :param series: the signal to smooth.
+    :type series: np.ndarray
+    :param window_function: window function
+    :type window_function: np.ndarray
+    :return: the smoothed signal.
+    :rtype: np.ndarray
+    """
+    # smoothed_s is an array of length 2*len(ts)-1
+    # smoothed_s is the smoothed version of ts obtained by applying
+    # a window function to ts
+    smoothed_signal = np.zeros((2*len(series) - 2,), dtype = np.float)
+
+    # window function used to smooth the spectrum series
+    res = series*window_function
+
+    # The second half of smoothed_signal is filled using periodic conditions
+    smoothed_signal[:len(series)] = res
+    smoothed_signal[len(series):] = res[-2:0:-1]
+
+    return smoothed_signal
