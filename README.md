@@ -18,7 +18,7 @@ A step by step explanation of how to compute the Mean Square Displacement
 
 ## 2. vacf.ipynb
 
-Comparing the velocities and Velocity Auto-Correlation Function (VACF) for
+Comparing the velocity and Velocity Auto-Correlation Function (VACF) for
 oxygen and hydrogen atoms.
 
 ## 3. dos.ipynb
