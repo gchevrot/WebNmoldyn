@@ -3,8 +3,6 @@
 Web Nmoldyn
 ------------
 
-REPOSITORY IN CONSTRUCTION
-
 Click on the badge "launch binder" to interact with the notebooks!
 
 This repository contains a set of Jupyter notebook based on the original
