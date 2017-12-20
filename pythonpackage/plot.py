@@ -1,9 +1,9 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-__version__ = "0.3.0"
+__version__ = "0.4.0"
 
-def plot_msd(*data, percentage=1, legend=None, fit=None):
+def plot_msd(*data, percentage=1, legend=None, fit=None, subdiffusion = False):
     """
     Plot the mean square displacement
 
@@ -16,6 +16,8 @@ def plot_msd(*data, percentage=1, legend=None, fit=None):
     :type legend: list of string
     :param fit: fitting coefficients
     :type fit: list of 2 floats
+    :param subdiffusion: fitif subdiffusion
+    :type subdiffusion: bool
     """
     fig, ax = plt.subplots(figsize=(10,7))
 
@@ -35,22 +37,40 @@ def plot_msd(*data, percentage=1, legend=None, fit=None):
             ax.set_xlim([0, msd[0, int(len(msd[0])*percentage)-1]])
             ax.set_ylim([0, msd[1, int(len(msd[1])*percentage)-1]])
         if fit:
-            ax_sub = fig.add_axes([0.20, 0.65, 0.2, 0.2],
-                         xlim=(0, msd[0, int(len(msd[0])*percentage)-1]*0.1),
-                         ylim=(0, msd[1, int(len(msd[1])*percentage)-1]*0.15))
-            # Remove spines and ticks
-            ax_sub.spines['right'].set_color('none')
-            ax_sub.spines['top'].set_color('none');
-            for msd in data:
-                ax_sub.plot(msd[0, :int(len(msd[0])*percentage)],
-                            msd[1, :int(len(msd[1])*percentage)])
-            # Adding text
-            ax.text(x = 5, y = 0.08, s = "Fit: 6 D t + a",
-                    fontsize = 18, color='#FF8000', alpha = 1)
-            ax.text(x = 5.6, y = 0.06, s = f"D = {fit[0]/6:.4f}",
-                    fontsize = 16, color='#FF8000', alpha = 1)
-            ax.text(x = 5.6, y = 0.04, s = f"a = {fit[1]:.4f}",
-                    fontsize = 16, color='#FF8000', alpha = 1)
+            if subdiffusion:
+                ax_sub = fig.add_axes([0.18, 0.65, 0.2, 0.2],
+                             xlim=(0, msd[0, int(len(msd[0])*percentage)-1]*0.1),
+                             ylim=(0, msd[1, int(len(msd[1])*percentage)-1]*0.45))
+                # Remove spines and ticks
+                ax_sub.spines['right'].set_color('none')
+                ax_sub.spines['top'].set_color('none');
+                for msd in data:
+                    ax_sub.plot(msd[0, :int(len(msd[0])*percentage)],
+                                msd[1, :int(len(msd[1])*percentage)])
+                # Adding text
+                ax.text(x = 30000, y = 0.4, s = r"Fit: 2 $D_{\alpha} t^{\alpha}$",
+                        fontsize = 18, color='#FF8000', alpha = 1)
+                ax.text(x = 34000, y = 0.3, s = r"$D_{\alpha}$ =" + f"{fit[0]/6:.3e}",
+                        fontsize = 16, color='#FF8000', alpha = 1)
+                ax.text(x = 34000, y = 0.2, s = r"$\alpha$ =" + f"{fit[1]:.4f}",
+                        fontsize = 16, color='#FF8000', alpha = 1)
+            else:
+                ax_sub = fig.add_axes([0.20, 0.65, 0.2, 0.2],
+                             xlim=(0, msd[0, int(len(msd[0])*percentage)-1]*0.1),
+                             ylim=(0, msd[1, int(len(msd[1])*percentage)-1]*0.15))
+                # Remove spines and ticks
+                ax_sub.spines['right'].set_color('none')
+                ax_sub.spines['top'].set_color('none');
+                for msd in data:
+                    ax_sub.plot(msd[0, :int(len(msd[0])*percentage)],
+                                msd[1, :int(len(msd[1])*percentage)])
+                # Adding text
+                ax.text(x = 5, y = 0.08, s = "Fit: 6 D t + a",
+                        fontsize = 18, color='#FF8000', alpha = 1)
+                ax.text(x = 5.6, y = 0.06, s = f"D = {fit[0]/6:.4f}",
+                        fontsize = 16, color='#FF8000', alpha = 1)
+                ax.text(x = 5.6, y = 0.04, s = f"a = {fit[1]:.4f}",
+                        fontsize = 16, color='#FF8000', alpha = 1)
 
 
     # labels
