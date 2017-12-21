@@ -1,9 +1,9 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-__version__ = "0.4.0"
+__version__ = "0.4.1"
 
-def plot_msd(*data, percentage=1, legend=None, fit=None, subdiffusion = False):
+def plot_msd(*data, percentage=1, legend=None, fit=None, subdiffusion = False, timeunit='ps'):
     """
     Plot the mean square displacement
 
@@ -16,8 +16,10 @@ def plot_msd(*data, percentage=1, legend=None, fit=None, subdiffusion = False):
     :type legend: list of string
     :param fit: fitting coefficients
     :type fit: list of 2 floats
-    :param subdiffusion: fitif subdiffusion
+    :param subdiffusion: if subdiffusion, the subplot is different
     :type subdiffusion: bool
+    :param timeunit: unit for the time axis
+    :type timeunit: str
     """
     fig, ax = plt.subplots(figsize=(10,7))
 
@@ -32,8 +34,8 @@ def plot_msd(*data, percentage=1, legend=None, fit=None, subdiffusion = False):
         for msd in data:
             ax.plot(msd[0, :int(len(msd[0])*percentage)],
                     msd[1, :int(len(msd[1])*percentage)])
-            ax.set_xlabel('time [ps]', size=16)
-            ax.set_ylabel('MSD [nm]', size=16)
+            ax.set_xlabel(f'time [{timeunit}]', size=16)
+            ax.set_ylabel(r'$MSD [nm^2]$', size=16)
             ax.set_xlim([0, msd[0, int(len(msd[0])*percentage)-1]])
             ax.set_ylim([0, msd[1, int(len(msd[1])*percentage)-1]])
         if fit:
@@ -48,11 +50,13 @@ def plot_msd(*data, percentage=1, legend=None, fit=None, subdiffusion = False):
                     ax_sub.plot(msd[0, :int(len(msd[0])*percentage)],
                                 msd[1, :int(len(msd[1])*percentage)])
                 # Adding text
-                ax.text(x = 30000, y = 0.4, s = r"Fit: 2 $D_{\alpha} t^{\alpha}$",
+                x = msd[0, int(len(msd[0])*percentage)] / 2
+                ax.text(x = x, y = 0.4, s = r"Fit: 2 $D_{\alpha} t^{\alpha}$",
                         fontsize = 18, color='#FF8000', alpha = 1)
-                ax.text(x = 34000, y = 0.3, s = r"$D_{\alpha}$ =" + f"{fit[0]/6:.3e}",
+                ax.text(x = x, y = 0.3,
+                        s = r"$D_{\alpha}$ =" + f"{fit[0]:.4f} " + r"$nm^2/$" + f"{timeunit}" + r"$^{\alpha}$",
                         fontsize = 16, color='#FF8000', alpha = 1)
-                ax.text(x = 34000, y = 0.2, s = r"$\alpha$ =" + f"{fit[1]:.4f}",
+                ax.text(x = x, y = 0.2, s = r"$\alpha$ =" + f"{fit[1]:.4f}",
                         fontsize = 16, color='#FF8000', alpha = 1)
             else:
                 ax_sub = fig.add_axes([0.20, 0.65, 0.2, 0.2],
