@@ -3,9 +3,10 @@
 Web Nmoldyn
 ------------
 
-Click on the badge "launch binder" to interact with the notebooks!
+Click on the badge "launch binder" to interact with the notebooks! (Note that
+the generation of the interactive notebooks may take a few minutes)
 
-This repository contains a set of Jupyter notebook based on the original
+This repository contains a set of Jupyter notebooks based on the original
 [nMoldyn program](http://dx.doi.org/10.1002/jcc.23035). A Molecular dynamics
 trajectory (box of water molecules) is used for the computation of the time
 series analyses.
