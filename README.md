@@ -26,3 +26,6 @@ oxygen and hydrogen atoms.
 
 Compute the Density Of States (DOS) for oxygen and hydrogen atoms.
 
+## 4. F_coh.ipynb
+
+Compute the coherent intermediate scattering function for a water trajectory.
