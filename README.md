@@ -1,4 +1,4 @@
-[![Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/gchevrot/WebNmoldyn/master)
+[![Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/khinsen/WebNmoldyn/f-coh)
 
 Web Nmoldyn
 ------------
