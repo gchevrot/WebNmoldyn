@@ -303,3 +303,57 @@ def plot_dos(*data, percentage=1, legend=None):
     ax.spines['right'].set_color('none')
     ax.spines['top'].set_color('none')
     ax.spines['bottom'].set_position(('data',0));
+
+
+def plot_fcoh(data, ticks=None, time=None, percentage=1, legend=None):
+    """
+    Plot F-coh
+
+    :param data: series
+    :type data: np.ndarray
+    :param ticks: series
+    :type ticks: np.ndarray
+    :param time: series
+    :type time: np.ndarray
+    :param percentage: percentage of the data that will be plotted,
+                       value between 0 and 1.
+    :type percentage: float
+    :param legend: data legend
+    :type legend: boolean
+    """
+    fig, ax = plt.subplots(figsize=(10,7))
+
+    # plot data
+    if ticks is not None and time is None:
+        ax.plot(ticks[:int(len(ticks)*percentage)],
+                   data[:int(len(data)*percentage)],
+                   linewidth=3)
+        ax.set_xlabel('$q [nm^{-1}]$', size=16)
+        ax.set_ylabel('$F(q, 0)$', size=16)
+
+    if ticks is not None and time is not None:
+        for i in range(0, len(ticks), 5):
+            ax.plot(time[:int(len(time)*percentage)],
+                       data[i, :int(len(data[i])*percentage)],
+                       linewidth=2,
+                       label="q = {:.4f}".format(ticks[i]))
+            ax.set_xlabel('$time [ps]$', size=16)
+            ax.set_ylabel('$F(q, t)$', size=16)
+
+    # labels
+    ax.tick_params(labelsize=16)
+
+    # Legend
+    if legend:
+        ax.legend(#legend,
+                  loc='best',
+                  frameon=True,
+                  shadow=True,
+                  facecolor='#FFFFFF',
+                  framealpha=0.9,
+                  fontsize=14)
+
+    # Remove spines and ticks
+    ax.spines['right'].set_color('none')
+    ax.spines['top'].set_color('none')
+    ax.spines['bottom'].set_position(('data',0));
