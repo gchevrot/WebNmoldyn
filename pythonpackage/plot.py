@@ -1,4 +1,5 @@
 import numpy as np
+import matplotlib as mpl
 import matplotlib.pyplot as plt
 
 __version__ = "0.4.1"
@@ -357,3 +358,40 @@ def plot_fcoh(data, ticks=None, time=None, percentage=1, legend=None):
     ax.spines['right'].set_color('none')
     ax.spines['top'].set_color('none')
     ax.spines['bottom'].set_position(('data',0));
+
+
+def plot_benchmark(processes, data):
+    fig, ax = plt.subplots(figsize=(10,7))
+
+    textcolor='#3B4241'
+    fontsize=16
+
+    # convert data in percentage
+    data_max = max(data)
+    percentage = [d/data_max*100 for d in data]
+
+    # Title
+    ax.set_title("Execution time in function of the number of processes", size=fontsize+2)
+    # plot data
+    for i, (process, benchmark, percent) in enumerate(zip(processes, data, percentage)):
+        ax.barh(i, percent, alpha=0.5, color="red")
+        if process==1:
+            ax.text(1, i, f"{process} process - {benchmark:.2f} seconds", fontsize=fontsize, fontdict={'color': textcolor})
+        else:
+            ax.text(1, i, f"{process} processes - {benchmark:.2f} seconds", fontsize=fontsize, fontdict={'color': textcolor})
+
+    # x ticks
+    ax.tick_params(labelsize=16)
+    ax.set_xticks([0, 25, 50, 75, 100])
+    # Add % to the x-ticks
+    fmt = '%.0f%%' # Format you want the ticks, e.g. '40%'
+    xticks = mpl.ticker.FormatStrFormatter(fmt)
+    ax.xaxis.set_major_formatter(xticks)
+
+
+    # Remove spines and ticks
+    ax.spines['left'].set_color('none')
+    ax.spines['right'].set_color('none')
+    ax.spines['top'].set_color('none')
+    ax.spines['bottom'].set_position(('data',-0.5));
+    ax.set_yticks([]);
