@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Bootstrap Tutorial Sample Page</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="static/main.css">
+  </head>
+
+<body>
+  <nav class="navbar navbar-expand-md">
+    <a class="navbar-brand" href="#">nMOLDYN on Jupyter</a>
+    <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#main-navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="main-navigation">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/gchevrot/WebNmoldyn">GitHub</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#contact">Contact</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <header class="page-header header container-fluid">
+    <div class="overlay"></div>
+    <div class="description">
+      <h1>Welcome to nMOLDYN on Jupyter!</h1>
+      <p>
+        <a href="http://dirac.cnrs-orleans.fr/nMOLDYN.html">nMOLDYN</a> is
+        an interactive analysis program for Molecular Dynamics simulations.
+        It is especially designed for the computation and decomposition of
+        neutron scattering spectra, but also computes other quantities.
+        <a href="https://jupyter.org/">Jupyter notebooks</a> became very popular
+        in the scientific community to analyze data in an interactive way. You
+        will find 4 Jupyter notebooks (see below), each notebook contains a
+        classical analysis. You can download the notebooks from
+        <a href="https://github.com/gchevrot/WebNmoldyn">GitHub</a> or even play
+        interactively with the notebooks thanks to
+        <a href="https://mybinder.org/">My Binder</a>...
+      </p>
+      <a class="btn btn-outline-secondary btn-lg"
+          href="https://mybinder.org/v2/gh/gchevrot/WebNmoldyn/demo"
+          role="button">
+          Try me on MyBinder
+      </a>
+    </div>
+  </header>
+
+  <div class="container features">
+    <div class="row">
+      <div class="col-lg-6 col-md-6 col-sm-12">
+        <h3 class="feature-title">MSD</h3>
+        <img src="images/msd.png" class="img-fluid">
+        <p>
+          From a molecular dynamics simulation of 256 water molecules, we
+          compute the Mean Square Displacement (MSD) for the hydrogen and oxygen
+          atoms.
+          See the <a href="https://github.com/gchevrot/WebNmoldyn/blob/master/msd.ipynb">
+          code on GitHub</a>.
+        </p>
+      </div>
+      <div class="col-lg-6 col-md-6 col-sm-12">
+        <h3 class="feature-title">VACF</h3>
+        <img src="images/vacf.png" class="img-fluid">
+        <p>
+          From a molecular dynamics simulation of 256 water molecules, we
+          compute the Velocity Auto-Correlation Function (VACF) for the hydrogen
+          and oxygen atoms.
+          See the <a href="https://github.com/gchevrot/WebNmoldyn/blob/master/vacf.ipynb">
+          code on GitHub</a>.
+        </p>
+      </div>
+      <div class="col-lg-6 col-md-6 col-sm-12">
+        <h3 class="feature-title">DOS</h3>
+        <img src="images/gw.png" class="img-fluid">
+        <p>
+          From a molecular dynamics simulation of 256 water molecules, we
+          compute the Density of States (DOS) for the hydrogen
+          and oxygen atoms.
+          See the <a href="https://github.com/gchevrot/WebNmoldyn/blob/master/vacf.ipynb">
+          code on GitHub</a>.
+        </p>
+      </div>
+      <div class="col-lg-6 col-md-6 col-sm-12">
+        <h3 class="feature-title">F(q, t)</h3>
+        <img src="images/fqt.png" class="img-fluid">
+        <p>
+          From a molecular dynamics simulation of 256 water molecules, we
+          compute the coherent intermediate scattering functions.
+          See the <a href="https://github.com/gchevrot/WebNmoldyn/blob/master/F_coh.ipynb">
+          code on GitHub</a>.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <footer class="page-footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-8 col-sm-12">
+          <h6 class="text-uppercase font-weight-bold">Additional Information</h6>
+          <p>
+            This work was supported by <a href="https://www.univ-orleans.fr/en/misc-orleans-tours/maison-interdisciplinaire-des-syst%C3%A8mes-complexes-0">
+            "la Maison Interdisciplinaire des Systèmes Complexes (MISC)"</a> of the
+            University of Orléans and the University of Tours.
+          </p>
+        </div>
+      <div class="col-lg-4 col-md-4 col-sm-12">
+        <h6 class="text-uppercase font-weight-bold">Contact</h6>
+        <p><a name="contact" href"http://dirac.cnrs-orleans.fr/~kneller/">Gerald Kneller</a>
+        <br/>E-Mail: Gerald.Kneller AT cnrs.fr
+        <br/>+33 1 38 25 78 42
+        <br/>+33 1 69 35 97 15</p>
+      </div>
+    </div>
+    <div class="footer-copyright text-center">webmaster: @gchevrot</div>
+  </footer>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+<script src="static/main.js"></script>
+</body>
+</html>
