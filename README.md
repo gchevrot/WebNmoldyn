@@ -3,6 +3,9 @@
 Web Nmoldyn
 ------------
 
+GitHub page:
+[https://gchevrot.github.io/WebNmoldyn/](https://gchevrot.github.io/WebNmoldyn/)
+
 Click on the badge "launch binder" to interact with the notebooks! (Note that
 the generation of the interactive notebooks may take a few minutes)
 
