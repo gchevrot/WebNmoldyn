@@ -84,10 +84,11 @@ body {
   }
   .description h1 {
     color: #fff;
+    font-size: 2.0rem;
   }
   .description p {
     color: #fff;
-    font-size: 1.3rem;
+    font-size: 1.0rem;
     line-height: 1.5;
   }
   .description a {
